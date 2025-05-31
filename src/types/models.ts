@@ -1,9 +1,9 @@
-// Aqui você pode definir todas as interfaces de entidades do sistema
 
 export interface User {
   id: string;
   name: string;
   email: string;
+  password: string;
   description: string;
   groupId?: string;
   coins: number;

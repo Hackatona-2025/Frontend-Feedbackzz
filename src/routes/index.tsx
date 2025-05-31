@@ -9,6 +9,7 @@ import GroupDetails from '../pages/GroupDetails';
 import Store from '../pages/store/Store';
 import LoginPage from '../components/LoginPage';
 import RegisterPage from '@/components/RegisterPage';
+import { ProtectedRoute } from '@/components/ProtectedRoute';
 
 export const router = createBrowserRouter([
   {
@@ -21,16 +22,34 @@ export const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <Layout />,
+    element: <ProtectedRoute />,
     children: [
-      { path: '/', element: <Feed /> }, // feed é o index!
-      { path: '/feed', element: <Feed /> },
-      { path: '/ai-analysis', element: <AIAnalysis /> },
-      { path: '/profile', element: <Profile /> },
-      { path: '/group/:groupId', element: <GroupDetails /> },
-      { path: '/admin/groups', element: <GroupManagement /> },
-      { path: '/admin/points', element: <PointsManagement /> },
-      { path: '/store', element: <Store /> },
+      {
+        path: '/',
+        element: <Layout />,
+        children: [
+          { path: '/', element: <Navigate to="/feed" replace /> },
+          { path: '/feed', element: <Feed /> },
+          { path: '/ai-analysis', element: <AIAnalysis /> },
+          { path: '/profile', element: <Profile /> },
+          { path: '/group/:groupId', element: <GroupDetails /> },
+          { path: '/store', element: <Store /> },
+        ],
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    element: <ProtectedRoute requireAdmin={true} />,
+    children: [
+      {
+        path: '/admin',
+        element: <Layout />,
+        children: [
+          { path: '/admin/groups', element: <GroupManagement /> },
+          { path: '/admin/points', element: <PointsManagement /> },
+        ],
+      },
     ],
   },
 ]);
