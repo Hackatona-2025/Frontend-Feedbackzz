@@ -1,28 +1,36 @@
+import { useLocation, useNavigate } from 'react-router-dom';
+
 interface BottomNavProps {
-  selectedTab: number;
   onSelect: (tab: string) => void;
 }
 
-export default function BottomNav({  onSelect }: BottomNavProps) {
+export default function BottomNav({ onSelect }: BottomNavProps) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  
   const tabs = [
-    { label: 'carrinho', icon: '🛒' },
-    { label: 'grupo 2', icon: '⭐', badge: 2 },
-    { label: 'psicologia', icon: '🧠' },
-    { label: 'perfil', icon: '👤' },
-    { label: 'grupo 3', icon: '⭐', badge: 3 },
+    { label: 'Feed', icon: '📝', path: '/' },
+    { label: 'AI', icon: '🤖', path: '/ai-analysis' },
+    { label: 'Profile', icon: '👤', path: '/profile' },
   ];
 
+  const handleClick = (tab: typeof tabs[0]) => {
+    onSelect(tab.label);
+    navigate(tab.path);
+  };
+
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-[#1e293b] flex justify-around py-2">
+    <nav className="fixed bottom-0 left-0 right-0 bg-[#1e293b] text-white flex justify-around py-2 border-t border-[#2d3a4f]">
       {tabs.map((tab, i) => (
-        <div key={i} onClick={() => onSelect(tab.label)} className="relative text-center text-white">
-          <span>{tab.icon}</span>
-          <div className="text-xs">{tab.label}</div>
-          {tab.badge && (
-            <span className="absolute -top-1 right-0 bg-violet-500 rounded-full px-1 text-xs">
-              {tab.badge}
-            </span>
-          )}
+        <div 
+          key={i} 
+          onClick={() => handleClick(tab)} 
+          className={`relative text-center cursor-pointer transition-colors p-2 rounded-md hover:bg-[#2d3a4f] ${
+            location.pathname === tab.path ? 'text-violet-400' : ''
+          }`}
+        >
+          <span className="text-xl">{tab.icon}</span>
+          <div className="text-xs mt-1">{tab.label}</div>
         </div>
       ))}
     </nav>

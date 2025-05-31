@@ -1,29 +1,41 @@
-import Header from '../components/Header';
-import TabSelector from '../components/TabSelector';
-import FeedbackCard from '../components/FeedbackCard';
-import BottomNav from '../components/BottomNav';
-import { useState } from 'react';
+import { createBrowserRouter } from 'react-router-dom';
+import Layout from '../layouts/Layout';
+import Feed from '../pages/Feed';
+import AIAnalysis from '../pages/AIAnalysis';
+import Profile from '../pages/Profile';
+import GroupManagement from '../pages/admin/GroupManagement';
+import PointsManagement from '../pages/admin/PointsManagement';
+import GroupDetails from '../pages/GroupDetails';
 
-export default function FeedbackPage() {
-  const [tab, setTab] = useState<number>(0);
-
-  return (
-    <div className="min-h-screen bg-[#0f172a] pb-16">
-      <Header />
-      <TabSelector activeTab={tab} onChange={setTab} />
-      <div className="px-4">
-        <FeedbackCard
-          title="Basic dialog title"
-          description="A dialog is a type of modal window that appears..."
-          reactions={[1, 1, 1, 1, 1]}
-        />
-        <FeedbackCard
-          title="Basic dialog title"
-          description="A dialog is a type of modal window that appears..."
-          reactions={[1, 0, 1, 1, 1]}
-        />
-      </div>
-      <BottomNav selectedTab={tab} onSelect={(label) => console.log(label)} />
-    </div>
-  );
-}
+export const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <Feed />,
+      },
+      {
+        path: '/ai-analysis',
+        element: <AIAnalysis />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
+      },
+      {
+        path: '/group/:groupId',
+        element: <GroupDetails />,
+      },
+      {
+        path: '/admin/groups',
+        element: <GroupManagement />,
+      },
+      {
+        path: '/admin/points',
+        element: <PointsManagement />,
+      },
+    ],
+  },
+]);
