@@ -8,7 +8,7 @@ export default function FeedbackPage() {
   const [tab, setTab] = useState<number>(0);
 
   return (
-    <div className="min-h-screen bg-gray-900 pb-16">
+    <div className="min-h-screen bg-[#0f172a] pb-16">
       <Header />
       <TabSelector activeTab={tab} onChange={setTab} />
       <div className="px-4">

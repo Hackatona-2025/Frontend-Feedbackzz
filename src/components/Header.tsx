@@ -1,10 +1,13 @@
 function Header() {
   return (
-    <header className="flex justify-between items-center p-4">
-      <button>☰</button>
+    <div className="bg-[#1e293b]">
+    <header className="flex">
+      <button></button>
       <h1 className="text-xl font-bold">FeedBackz</h1>
       <button>👤</button>
     </header>
+
+    </div>
   );
 }
 

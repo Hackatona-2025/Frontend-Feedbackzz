@@ -13,7 +13,7 @@ export default function BottomNav({  onSelect }: BottomNavProps) {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-gray-800 flex justify-around py-2">
+    <nav className="fixed bottom-0 left-0 right-0 bg-[#1e293b] flex justify-around py-2">
       {tabs.map((tab, i) => (
         <div key={i} onClick={() => onSelect(tab.label)} className="relative text-center text-white">
           <span>{tab.icon}</span>
