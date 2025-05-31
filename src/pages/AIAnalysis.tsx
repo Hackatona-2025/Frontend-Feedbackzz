@@ -23,6 +23,7 @@ interface AnalysisResult {
 }
 
 export default function AIAnalysis() {
+  const [activeTab, setActiveTab] = useState("suggestions");
   const [analysis] = useState<AnalysisResult>({
     overallScore: 75,
     sentiment: "Positivo",
@@ -74,14 +75,14 @@ export default function AIAnalysis() {
             </div>
 
             <Tabs defaultValue="suggestions" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 text-xs sm:text-sm">
-                <TabsTrigger value="suggestions" className="px-2 sm:px-4">
+              <TabsList className="flex justify-between text-xs sm:text-sm">
+                <TabsTrigger value="suggestions" className={`bg-white px-2 sm:px-4 ${activeTab === "suggestions" ? "bg-gradient-to-br from-blue-500 to-purple-600" : "" }`} onClick={() => setActiveTab("suggestions")}>
                   Sugestões
                 </TabsTrigger>
-                <TabsTrigger value="mentions" className="px-2 sm:px-4">
+                <TabsTrigger value="mentions" className={`bg-white px-2 sm:px-4 ${activeTab === "mentions" ? "bg-gradient-to-br from-blue-500 to-purple-600" : "" }`} onClick={() => setActiveTab("mentions")}>
                   Menções
                 </TabsTrigger>
-                <TabsTrigger value="hashtags" className="px-2 sm:px-4">
+                <TabsTrigger value="hashtags" className={`bg-white px-2 sm:px-4 ${activeTab === "hashtags" ? "bg-gradient-to-br from-blue-500 to-purple-600" : "" }`} onClick={() => setActiveTab("hashtags")}>
                   Hashtags
                 </TabsTrigger>
               </TabsList>

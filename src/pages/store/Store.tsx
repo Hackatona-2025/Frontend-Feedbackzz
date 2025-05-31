@@ -19,14 +19,30 @@ const products = [
     price: 300,
     icon: <Gift className="w-8 h-8 text-pink-400" />,
   },
+  {
+    id: 2,
+    name: 'Theme Dark Pro',
+    description: 'Tema escuro exclusivo para sua conta',
+    category: 'Themes',
+    price: 300,
+    icon: <Gift className="w-8 h-8 text-pink-400" />,
+  },
+  {
+    id: 2,
+    name: 'Theme Dark Pro',
+    description: 'Tema escuro exclusivo para sua conta',
+    category: 'Themes',
+    price: 300,
+    icon: <Gift className="w-8 h-8 text-pink-400" />,
+  },
 ];
 
 export default function StorePage() {
 
   return (
-    <div className="w-screen min-h-screen flex flex-col pb-20">
+    <div className="w-screen overflow-y-auto flex flex-col pb-22">
       <main className="flex-1 flex flex-col items-center mt-6 px-4">
-        <h2 className="text-white text-2xl font-semibold mb-3">Loja de Pontos</h2>
+        <h2 className="text-black text-2xl font-semibold mb-3">Loja de Pontos</h2>
         <div className="w-full space-y-4">
       {products.map((prod) => (
       <ProductCard key={prod.id} product={prod} />
