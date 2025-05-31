@@ -8,6 +8,7 @@ import {
   PlusCircle,
 } from "lucide-react";
 import AddFeedbackDialog from "./AddFeedbackDialog";
+import authService from "@/services/authService";
 
 interface BottomNavProps {
   onSelect: (tab: string) => void;
@@ -17,13 +18,15 @@ export default function BottomNav({ onSelect }: BottomNavProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const currentUser = authService.getCurrentUser();
+  const isAdmin = currentUser?.role === 'ADMIN';
 
   const tabs = [
     { label: "Feed", icon: Newspaper, path: "/" },
     { label: "AI", icon: Brain, path: "/ai-analysis" },
     { label: "Add", icon: PlusCircle, isAdd: true },
     { label: "Store", icon: ShoppingCart, path: "/store" },
-    { label: "Admin", icon: Settings, path: "/admin/groups" },
+    ...(isAdmin ? [{ label: "Admin", icon: Settings, path: "/admin/groups" }] : []),
   ];
 
   const handleClick = (tab: (typeof tabs)[0]) => {

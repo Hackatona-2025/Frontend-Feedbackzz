@@ -1,4 +1,4 @@
-import { api } from './api';
+import api from './api';
 
 export interface CreateFeedbackDto {
   content: string;
@@ -22,53 +22,112 @@ export interface Reaction {
   createdAt: string;
 }
 
-export const feedbackService = {
+interface ApiResponse<T> {
+  statusCode: number;
+  data?: T;
+  message?: string;
+}
+
+const feedbackService = {
   async createFeedback(feedback: CreateFeedbackDto) {
-    const response = await api.post<{ data: Feedback }>('/feedbacks', feedback);
-    return response.data?.data;
+    try {
+      const response = await api.post<ApiResponse<Feedback>>('/feedbacks', feedback);
+      return response.data?.data;
+    } catch (error) {
+      console.error('Error creating feedback:', error);
+      throw error;
+    }
   },
 
   async getFeedbackById(id: string) {
-    const response = await api.get<{ data: Feedback }>(`/feedbacks/${id}`);
-    return response.data?.data;
+    try {
+      const response = await api.get<ApiResponse<Feedback>>(`/feedbacks/${id}`);
+      return response.data?.data;
+    } catch (error) {
+      console.error(`Error getting feedback ${id}:`, error);
+      throw error;
+    }
   },
 
   async getAllFeedbacks() {
-    const response = await api.post<{ data: Feedback[] }>('/feedbacks/all');
-    console.log('Feedbacks response:', response.data); // Debug log
-    return response.data?.data || [];
+    try {
+      const response = await api.post<ApiResponse<Feedback[]>>('/feedbacks/all');
+      console.log('Feedbacks response:', response.data); // Debug log
+      if (response.data?.statusCode === 200 && response.data?.data) {
+        return response.data.data;
+      }
+      return [];
+    } catch (error) {
+      console.error('Error getting all feedbacks:', error);
+      return [];
+    }
   },
 
   async updateFeedback(feedback: Feedback) {
-    const response = await api.patch<{ data: Feedback }>('/feedbacks', feedback);
-    return response.data?.data;
+    try {
+      const response = await api.patch<ApiResponse<Feedback>>('/feedbacks', feedback);
+      return response.data?.data;
+    } catch (error) {
+      console.error('Error updating feedback:', error);
+      throw error;
+    }
   },
 
   async deleteFeedback(id: string) {
-    await api.delete(`/feedbacks/${id}`);
+    try {
+      await api.delete(`/feedbacks/${id}`);
+    } catch (error) {
+      console.error(`Error deleting feedback ${id}:`, error);
+      throw error;
+    }
   },
 
   async getFeedbacksByGroupId(groupId: string) {
-    const response = await api.get<{ data: Feedback[] }>(`/feedbacks/group/${groupId}`);
-    return response.data?.data || [];
+    try {
+      const response = await api.get<ApiResponse<Feedback[]>>(`/feedbacks/group/${groupId}`);
+      return response.data?.data || [];
+    } catch (error) {
+      console.error(`Error getting feedbacks for group ${groupId}:`, error);
+      return [];
+    }
   },
 
   async getFeedbacksByAuthorId(authorId: string) {
-    const response = await api.get<{ data: Feedback[] }>(`/feedbacks/author/${authorId}`);
-    return response.data?.data || [];
+    try {
+      const response = await api.get<ApiResponse<Feedback[]>>(`/feedbacks/author/${authorId}`);
+      return response.data?.data || [];
+    } catch (error) {
+      console.error(`Error getting feedbacks for author ${authorId}:`, error);
+      return [];
+    }
   },
 
   async addReaction(feedbackId: string, type: Reaction['type']): Promise<Reaction | undefined> {
-    const response = await api.post<{ data: Reaction }>(`/feedbacks/${feedbackId}/reactions`, { type });
-    return response.data?.data;
+    try {
+      const response = await api.post<ApiResponse<Reaction>>(`/feedbacks/${feedbackId}/reactions`, { type });
+      return response.data?.data;
+    } catch (error) {
+      console.error(`Error adding reaction to feedback ${feedbackId}:`, error);
+      throw error;
+    }
   },
 
   async removeReaction(feedbackId: string, reactionId: number): Promise<void> {
-    await api.delete(`/feedbacks/${feedbackId}/reactions/${reactionId}`);
+    try {
+      await api.delete(`/feedbacks/${feedbackId}/reactions/${reactionId}`);
+    } catch (error) {
+      console.error(`Error removing reaction ${reactionId} from feedback ${feedbackId}:`, error);
+      throw error;
+    }
   },
 
   async reportFeedback(id: string): Promise<void> {
-    await api.post(`/feedbacks/${id}/report`);
+    try {
+      await api.post(`/feedbacks/${id}/report`);
+    } catch (error) {
+      console.error(`Error reporting feedback ${id}:`, error);
+      throw error;
+    }
   },
 };
 

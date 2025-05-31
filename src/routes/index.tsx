@@ -46,6 +46,7 @@ export const router = createBrowserRouter([
         path: '/admin',
         element: <Layout />,
         children: [
+          { path: '/admin', element: <Navigate to="/admin/groups" replace /> },
           { path: '/admin/groups', element: <GroupManagement /> },
           { path: '/admin/points', element: <PointsManagement /> },
         ],
