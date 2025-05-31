@@ -18,10 +18,10 @@ export default function Layout() {
     }
   };
 
-  return (
-    <div className="min-h-screen bg-[#0f172a] text-white">
+ return (
+    <div className="w-screen min-h-screen bg-[#0f172a] text-white relative">
       <Header />
-      <main className="container mx-auto px-4 py-6 pb-20">
+      <main className="w-full pt-[0px] pb-[64px]">
         <Outlet />
       </main>
       <BottomNav onSelect={handleNavigation} />
