@@ -1,10 +1,8 @@
-import { Menu } from "lucide-react"
 import { DisplayCoins } from "./DisplayCoins";
 function Header() {
   return (
-    <div className="flex items-center justify-between bg-[#1e293b] p-4">
-      <Menu className="text-white" size={24} />
-      <h2 className="text-white text-2xl font-semibold">FeedBackz</h2>
+    <div className="flex sticky top-0 items-center justify-around bg-[#1e293b] p-4">
+      <h2 className="flex text-white text-2xl justify-center font-semibold">FeedBackz</h2>
       <DisplayCoins coins={310} />
     </div>
   );
