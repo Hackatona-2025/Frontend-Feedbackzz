@@ -65,8 +65,8 @@ export default function FeedbackCard({
         className="hover:shadow-lg transition-shadow duration-200"
       >
         <CardContent className="p-6">
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center gap-3">
+          <div className="flex items-start justify-center mb-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-sm">
                   {feedback.isAnonymous
@@ -75,7 +75,7 @@ export default function FeedbackCard({
                 </span>
               </div>
               <div>
-                <h3 className="font-bold text-lg text-gray-900">
+                <h3 className="font-bold text-md sm:text-lg text-gray-900">
                   {feedback.title}
                 </h3>
                 <p className="text-sm text-gray-500">
@@ -109,9 +109,7 @@ export default function FeedbackCard({
               icon={<ThumbsUp className="h-4 w-4" />}
               count={feedback.reactions[0]}
               color="bg-blue-100 text-blue-600"
-              onClick={() => {
-                onReactionClick(feedback.id, 0);
-              }}
+              onClick={() => {onReactionClick(feedback.id, 0); setSelectedReaction("ThumbsUp")}}
             />
             <ReactionButton
               icon={<Zap className="h-4 w-4" />}
