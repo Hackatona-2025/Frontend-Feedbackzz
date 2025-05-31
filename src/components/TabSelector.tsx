@@ -1,22 +1,26 @@
 import { Button } from "./ui/button";
 
 interface TabSelectorProps {
-  activeTab: number;
+  activeTab: string;
   onChange: (tabIndex: number) => void;
 }
 
 export default function TabSelector({ activeTab, onChange }: TabSelectorProps) {
-  const tabs = ['grupo 1', 'grupo 2', 'grupo 3'];
+  const tabs = ["Feed", "Feedbacks", "Reações", "Relatórios"];
+
+  const handleTabChange = (index: number) => {
+
+  }
 
   return (
-    <div className="w-full overflow-x-auto flex gap-2 px-4">
+    <div className="w-full overflow-x-auto flex gap-8 px-4">
       {tabs.map((tab, index) => (
         <Button
-          key={tab}
-          className={`bg-[#1e293b] text-white ${activeTab === index ? 'bg-violet-500' : ''} flex-1`}
+          key={index}
+          className={`!bg-[#334155] text-white !rounded-xl ${activeTab === tab ? "!bg-violet-500" : ""}`}
           onClick={() => onChange(index)}
         >
-          ⭐ {tab}
+          {tab}
         </Button>
       ))}
     </div>
