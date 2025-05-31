@@ -11,7 +11,7 @@ export default function TabSelector() {
 
   const getAllGroups = async () => {
     //implementar chamada de buscar groups
-    const data = ["data", "aaa", "bbb", "Ccc", "ddd", "eee"]; //passar final da resposta
+    const data = ["Dev", "Front", "Back", "Geral"]; //passar final da resposta
     setTabs(data);
   }
 

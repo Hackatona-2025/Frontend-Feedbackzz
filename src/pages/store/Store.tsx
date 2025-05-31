@@ -6,36 +6,29 @@ import { Gift } from "lucide-react";
 const products = [
   {
     id: 1,
-    name: "Badge Premium",
-    description: "Destaque seu perfil com uma badge especial",
+    name: "Mochila da HPE",
+    description: "Uma mochila exclusiva da HPE - para você levar seus itens",
     category: "Badges",
-    price: 2,
+    price: 20000,
     icon: <Gift className="w-8 h-8 text-yellow-400" />,
   },
   {
     id: 2,
-    name: "Theme Dark Pro",
-    description: "Tema escuro exclusivo para sua conta",
-    category: "Themes",
-    price: 300,
+    name: "PowerBank",
+    description: "Um powerbank, para você nunca ficar sem bateria",
+    category: "Tecnology",
+    price: 3000,
     icon: <Gift className="w-8 h-8 text-pink-400" />,
   },
   {
     id: 3,
-    name: "Theme Dark Pro",
-    description: "Tema escuro exclusivo para sua conta",
-    category: "Themes",
+    name: "Aulas de Graça na Alura",
+    description: "Mais de 1000 cursos gratuitos e interativos na Alura",
+    category: "Education",
     price: 300,
     icon: <Gift className="w-8 h-8 text-pink-400" />,
   },
-  {
-    id: 4,
-    name: "Theme Dark Pro",
-    description: "Tema escuro exclusivo para sua conta",
-    category: "Themes",
-    price: 300,
-    icon: <Gift className="w-8 h-8 text-pink-400" />,
-  },
+  
 ];
 
 export default function StorePage() {
