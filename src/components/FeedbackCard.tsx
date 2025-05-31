@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Button } from './ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
-import { Flag, MoreVertical } from 'lucide-react';
+import { ButtonReport } from './ButtonReport';
 
 interface FeedbackCardProps {
   feedback: {
@@ -20,16 +18,6 @@ interface FeedbackCardProps {
 }
 
 export default function FeedbackCard({ feedback, onReaction }: FeedbackCardProps) {
-  const [showReportDialog, setShowReportDialog] = useState(false);
-  const [reportReason, setReportReason] = useState('');
-
-  const handleReport = () => {
-    // TODO: Implement report functionality
-    console.log('Report submitted:', { feedbackId: feedback.id, reason: reportReason });
-    setShowReportDialog(false);
-    setReportReason('');
-  };
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('pt-BR', {
       day: '2-digit',
@@ -69,33 +57,9 @@ export default function FeedbackCard({ feedback, onReaction }: FeedbackCardProps
             {feedback.isAnonymous ? 'Anonymous' : feedback.author} • {formatDate(feedback.createdAt)}
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <Dialog open={showReportDialog} onOpenChange={setShowReportDialog}>
-            <DialogTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                <Flag className="h-4 w-4" />
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Reportar Feedback</DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4">
-                <textarea
-                  className="w-full min-h-[100px] p-2 rounded-md bg-gray-100 text-gray-900"
-                  placeholder="Digite o motivo da denúncia..."
-                  value={reportReason}
-                  onChange={(e) => setReportReason(e.target.value)}
-                />
-                <Button onClick={handleReport} className="w-full">
-                  Enviar Denúncia
-                </Button>
-              </div>
-            </DialogContent>
-          </Dialog>
-          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-            <MoreVertical className="h-4 w-4" />
-          </Button>
+        <div className="flex items-center">
+        <ButtonReport>
+        </ButtonReport>
         </div>
       </CardHeader>
       <CardContent>
