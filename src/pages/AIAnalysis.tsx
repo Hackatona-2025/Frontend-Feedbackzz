@@ -45,7 +45,7 @@ export default function AIAnalysis() {
   })
 
   return (
-    <div className="w-screen space-y-4 sm:space-y-6 p-4 sm:p-6">
+    <div className="w-screen h-full flex justify-center items-center space-y-4 sm:space-y-6 p-4 sm:p-6">
       <Card>
         <CardHeader className="p-4 sm:p-6">
           <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
@@ -63,7 +63,7 @@ export default function AIAnalysis() {
                 <h3 className="font-semibold text-sm sm:text-base">Pontuação Geral</h3>
                 <span className="text-xl sm:text-2xl font-bold text-violet-500">{analysis.overallScore}%</span>
               </div>
-              <Progress value={analysis.overallScore} className="h-2 sm:h-3" />
+              <Progress value={analysis.overallScore} className="h-2 sm:h-3 fill-gray" />
             </div>
 
             <div>
