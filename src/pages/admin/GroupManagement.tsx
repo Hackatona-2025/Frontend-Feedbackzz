@@ -48,7 +48,7 @@ const sampleGroups: Group[] = [
 
 export default function GroupManagement() {
   return (
-    <div className="w-screen h-full bg-gray-50 pt-2 p-2">
+    <div className="w-screen h-full bg-gray-50 pt-2 p-2 pb-20">
       <div className="flex flex-col justify-center items-center mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">

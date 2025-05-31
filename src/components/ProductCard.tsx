@@ -1,4 +1,3 @@
-import { Gift } from "lucide-react";
 import { DisplayCoins } from "./DisplayCoins";
 
 
@@ -29,7 +28,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <span className="flex items-center text-yellow-400 font-bold text-lg mb-2 gap-1">
           <DisplayCoins coins={product.price} />
         </span>
-        <button className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-full text-white px-5 py-2 rounded-lg font-bold active:scale-95 transition">Comprar</button>
+        <button className="bg-gradient-to-br from-blue-500 to-purple-600  text-white px-5 py-2 rounded-lg font-bold active:scale-95 transition">Comprar</button>
       </div>
     </div>
   );
