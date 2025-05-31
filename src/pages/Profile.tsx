@@ -14,7 +14,9 @@ export default function Profile() {
             <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6">
               <Avatar className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex-shrink-0">
                 <AvatarImage src="/placeholder-avatar.jpg" />
-                <AvatarFallback className="text-lg sm:text-xl">U</AvatarFallback>
+                <AvatarFallback className="text-lg sm:text-xl">
+                <img src="https://github.com/shadcn.png" alt="@shadcn"></img>
+                </AvatarFallback>
               </Avatar>
               <div className="text-center sm:text-left w-full">
                 <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold">Bernardo Kirsch</h2>

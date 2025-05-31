@@ -42,6 +42,30 @@ export default function Feed() {
       reactions: [3, 1, 2, 1, 0],
       createdAt: "2024-03-19T15:30:00Z",
     },
+    {
+      id: "3",
+      title: "Feedback sobre a última sprint",
+      content:
+        "Eu gostaria de sugerir uma melhoria no processo de integração contínua @dev-team #improvement",
+      author: "João Silva",
+      isAnonymous: false,
+      mentions: [],
+      hashtags: ["teamwork", "communication"],
+      reactions: [3, 1, 2, 1, 0],
+      createdAt: "2024-03-19T15:30:00Z",
+    },
+    {
+      id: "4",
+      title: "A hacktona",
+      content:
+        "A comunicação entre os times precisa melhorar #teamwork #communication",
+      author: "Anonymous",
+      isAnonymous: true,
+      mentions: [],
+      hashtags: ["teamwork", "communication"],
+      reactions: [3, 1, 2, 1, 0],
+      createdAt: "2024-03-19T15:30:00Z",
+    }
   ]);
 
   const handleReaction = (feedbackId: string, reactionIndex: number) => {
