@@ -8,10 +8,6 @@ interface TabSelectorProps {
 export default function TabSelector({ activeTab, onChange }: TabSelectorProps) {
   const tabs = ["Feed", "Feedbacks", "Reações", "Relatórios"];
 
-  const handleTabChange = (index: number) => {
-
-  }
-
   return (
     <div className="w-full overflow-x-auto flex gap-8 px-4">
       {tabs.map((tab, index) => (
