@@ -1,3 +1,4 @@
+
 // src/pages/store/Store.tsx
 import ProductCard from "../../components/ProductCard";
 import { Gift } from "lucide-react";

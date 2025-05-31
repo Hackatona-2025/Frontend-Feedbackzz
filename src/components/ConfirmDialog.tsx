@@ -1,6 +1,4 @@
-// components/ConfirmDialog.tsx
-import * as React from "react";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
 interface ConfirmDialogProps {

@@ -7,7 +7,7 @@ import {
   Settings,
   PlusCircle,
 } from "lucide-react";
-import AddFeedbackDialog from "./AddFeedbackDialog"; // ajuste o caminho conforme seu projeto
+import AddFeedbackDialog from "./AddFeedbackDialog";
 
 interface BottomNavProps {
   onSelect: (tab: string) => void;
