@@ -52,7 +52,7 @@ export default function Feed() {
       mentions: [],
       hashtags: ["teamwork", "communication"],
       reactions: [8, 3, 10, 1, 9],
-      createdAt: "2024-03-19T15:30:00Z",
+      createdAt: "2024-03-19T11:40:00Z",
     },
     {
       id: "4",
@@ -65,8 +65,8 @@ export default function Feed() {
       hashtags: ["chateado"],
       reactions: [3, 1002, 2002, 1, 200
       ],
-      createdAt: "2024-03-19T15:30:00Z",
-    }
+      createdAt: "2024-03-19T11:38:00Z",
+    },
   ]);
 
   const handleReaction = (feedbackId: string, reactionIndex: number) => {
