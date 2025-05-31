@@ -102,7 +102,7 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
               icon={<ThumbsUp className="h-4 w-4" />}
               count={feedback.reactions[0]}
               color="bg-blue-100 text-blue-600"
-              onClick={() => {onReactionClick(feedback.id, 0); setSelectedReaction(ThumbsUp)}}
+              onClick={() => {onReactionClick(feedback.id, 0); setSelectedReaction("ThumbsUp")}}
             />
             <ReactionButton
               icon={<Zap className="h-4 w-4" />}
