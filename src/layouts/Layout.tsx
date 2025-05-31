@@ -20,9 +20,9 @@ export default function Layout() {
 
   return (
     <>
-      <div className="w-max-screen overflow-x-hidden min-h-screen h-full bg-gray-50 text-white relative">
+      <div className="w-full min-h-screen h-full bg-gray-50 text-white relative overflow-x-hidden">
         <Header />
-        <main className="w-full">
+        <main className="pt-20 pb-20"> {/* Aqui o pb-14 garante o espaço da nav */}
           <Outlet />
         </main>
       </div>

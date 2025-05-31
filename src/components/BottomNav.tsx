@@ -37,7 +37,7 @@ export default function BottomNav({ onSelect }: BottomNavProps) {
 
   return (
     <>
-      <nav className="sticky bottom-0 bg-gradient-to-br from-slate-800 to-slate-700 text-white flex justify-around py-2 border-t border-[#2d3a4f] z-50">
+      <nav className="fixed bottom-0 left-0 w-full bg-gradient-to-br from-slate-800 to-slate-700 text-white flex justify-around py-2 border-t border-[#2d3a4f] z-50">
         {tabs.map((tab, i) => (
           <div
             key={i}
@@ -46,15 +46,13 @@ export default function BottomNav({ onSelect }: BottomNavProps) {
               location.pathname === tab.path ? "text-violet-400" : ""
             }`}
           >
-            <tab.icon
-              className={`w-6 h-6 mx-auto ${tab.isAdd ? "text-green-400" : ""}`}
-            />
+          <tab.icon className={`w-6 h-6 mx-auto ${tab.isAdd ? "text-green-400" : ""}`} />
             <div className="text-[10px] sm:text-xs mt-1 truncate">
               {tab.label}
             </div>
           </div>
-        ))}
-      </nav>
+  ))}
+</nav>
       <AddFeedbackDialog open={dialogOpen} onOpenChange={setDialogOpen} />
     </>
   );

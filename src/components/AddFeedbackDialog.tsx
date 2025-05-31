@@ -37,7 +37,7 @@ export default function AddFeedbackDialog({ open, onOpenChange }: AddFeedbackDia
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[95vw] max-w-2xl mx-auto">
+      <DialogContent className="w-[95vw] max-w-2xl mx-auto z-[999]">
         <DialogHeader>
           <DialogTitle className="text-lg sm:text-xl">Criar Novo Feedback</DialogTitle>
         </DialogHeader>

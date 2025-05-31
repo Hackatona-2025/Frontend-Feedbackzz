@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200/20 bg-gradient-to-br from-slate-800 to-slate-700 supports-[backdrop-filter]:bg-white/60">
+    <header className="fixed top-0 left-0 z-50 w-full border-b border-slate-200/20 bg-gradient-to-br from-slate-800 to-slate-700 supports-[backdrop-filter]:bg-white/60">
       <div className="container flex h-16 items-center justify-between px-6">
         <div className="flex items-center gap-1 sm:space-x-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-pink-600 to-purple-600">
