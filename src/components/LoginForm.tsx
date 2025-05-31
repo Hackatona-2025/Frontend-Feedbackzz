@@ -1,62 +1,88 @@
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import authService from "@/services/authService";
+import { useNavigate } from "react-router-dom";
 
 interface LoginFormProps {
-  onLogin: (email: string, password: string) => Promise<void>;
+  onLogin?: (email: string, password: string) => Promise<void>;
   loading?: boolean;
 }
 
-export function LoginForm({ onLogin, loading }: LoginFormProps) {
+export function LoginForm({ loading: propLoading }: LoginFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    
     if (!email || !password) {
-      toast.error("Preencha todos os campos");
+      toast.error("Por favor, preencha todos os campos");
       return;
     }
-    await onLogin(email, password);
-  };
+    
+    try {
+      setIsLoading(true);
+      await authService.login({ email, password });
+      toast.success("Login realizado com sucesso!");
+      navigate("/feed");
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : "Erro ao fazer login";
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
-    <form className="space-y-6 w-full" onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="email" className="block text-sm font-semibold mb-1 text-white">
+    <form onSubmit={handleSubmit} className="w-full space-y-4">
+      <div className="space-y-2">
+        <Label htmlFor="email" className="text-sm font-medium text-gray-200">
           Email
-        </label>
+        </Label>
         <Input
           id="email"
           type="email"
-          className="bg-slate-700 border border-slate-600 text-white placeholder-gray-400 focus:ring-violet-400 focus:border-violet-400"
           placeholder="seu@email.com"
           value={email}
-          onChange={e => setEmail(e.target.value)}
-          autoComplete="email"
+          onChange={(e) => setEmail(e.target.value)}
+          className="h-11 bg-white/10 border-violet-500/20 text-white placeholder:text-gray-400"
+          required
         />
       </div>
-      <div>
-        <label htmlFor="password" className="block text-sm font-semibold mb-1 text-white">
-          Senha
-        </label>
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <Label htmlFor="password" className="text-sm font-medium text-gray-200">
+            Senha
+          </Label>
+          <button
+            type="button"
+            className="text-xs text-violet-400 hover:text-pink-300 transition"
+          >
+            Esqueceu a senha?
+          </button>
+        </div>
         <Input
           id="password"
           type="password"
-          className="bg-slate-700 border border-slate-600 text-white placeholder-gray-400 focus:ring-violet-400 focus:border-violet-400"
-          placeholder="••••••••"
           value={password}
-          onChange={e => setPassword(e.target.value)}
-          autoComplete="current-password"
+          onChange={(e) => setPassword(e.target.value)}
+          className="h-11 bg-white/10 border-violet-500/20 text-white placeholder:text-gray-400"
+          required
         />
       </div>
       <Button
-        className="w-full mt-2 bg-gradient-to-br from-violet-500 to-blue-700 text-white font-bold hover:from-violet-600 hover:to-blue-800 transition-colors"
         type="submit"
-        disabled={loading}
+        className="w-full h-11 bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white font-medium"
+        disabled={isLoading || propLoading}
       >
-        {loading ? "Entrando..." : "Entrar"}
+        {isLoading ? "Entrando..." : "Entrar"}
       </Button>
     </form>
   );

@@ -27,7 +27,7 @@ export default function Feed() {
       isAnonymous: false,
       mentions: ["tech-lead"],
       hashtags: ["devops", "improvement"],
-      reactions: [5, 2, 1, 0, 1],
+      reactions: [5, 2, 1, 0, 1,],
       createdAt: "2024-03-20T10:00:00Z",
     },
     {
@@ -41,6 +41,31 @@ export default function Feed() {
       hashtags: ["teamwork", "communication"],
       reactions: [3, 1, 2, 1, 0],
       createdAt: "2024-03-19T15:30:00Z",
+    },
+    {
+      id: "3",
+      title: "Sobre a infra do projeto...",
+      content:
+        "Eu gostaria de sugerir uma melhoria no processo de integração contínua! @devops-team #improvement",
+      author: "Bernardo Kirsch",
+      isAnonymous: false,
+      mentions: [],
+      hashtags: ["teamwork", "communication"],
+      reactions: [8, 3, 10, 1, 9],
+      createdAt: "2024-03-19T11:40:00Z",
+    },
+    {
+      id: "4",
+      title: "A Hacktona",
+      content:
+        "Achei que o yama ia fazer o time dele para a hacktona, não gostei! Ficou devendo @yamagutti !! #chateado @coordenação",
+      author: "Anonymous",
+      isAnonymous: true,
+      mentions: ["coordenação", "yamagutti"],
+      hashtags: ["chateado"],
+      reactions: [3, 1002, 2002, 1, 200
+      ],
+      createdAt: "2024-03-19T11:38:00Z",
     },
   ]);
 
