@@ -1,6 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Newspaper, Brain, ShoppingCart, Settings, PlusCircle } from "lucide-react";
+import {
+  Newspaper,
+  Brain,
+  ShoppingCart,
+  Settings,
+  PlusCircle,
+} from "lucide-react";
 import AddFeedbackDialog from "./AddFeedbackDialog";
 
 interface BottomNavProps {
@@ -20,7 +26,7 @@ export default function BottomNav({ onSelect }: BottomNavProps) {
     { label: "Admin", icon: Settings, path: "/admin/groups" },
   ];
 
-  const handleClick = (tab: typeof tabs[0]) => {
+  const handleClick = (tab: (typeof tabs)[0]) => {
     if (tab.isAdd) {
       setDialogOpen(true);
     } else if (tab.path) {
@@ -31,7 +37,7 @@ export default function BottomNav({ onSelect }: BottomNavProps) {
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 right-0 bg-gradient-to-br from-slate-800 to-slate-700 text-white flex justify-around py-2 border-t border-[#2d3a4f] z-50">
+      <nav className="sticky bottom-0 bg-gradient-to-br from-slate-800 to-slate-700 text-white flex justify-around py-2 border-t border-[#2d3a4f] z-50">
         {tabs.map((tab, i) => (
           <div
             key={i}
@@ -40,8 +46,12 @@ export default function BottomNav({ onSelect }: BottomNavProps) {
               location.pathname === tab.path ? "text-violet-400" : ""
             }`}
           >
-            <tab.icon className={`w-6 h-6 mx-auto ${tab.isAdd ? "text-green-400" : ""}`} />
-            <div className="text-[10px] sm:text-xs mt-1 truncate">{tab.label}</div>
+            <tab.icon
+              className={`w-6 h-6 mx-auto ${tab.isAdd ? "text-green-400" : ""}`}
+            />
+            <div className="text-[10px] sm:text-xs mt-1 truncate">
+              {tab.label}
+            </div>
           </div>
         ))}
       </nav>
