@@ -25,7 +25,6 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
 
   const renderContent = (content: string) => {
     if (!content) return "";
-    
     return content.split(" ").map((word, index) => {
       if (word.startsWith("@")) {
         return (
@@ -48,7 +47,7 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
   // Extrair hashtags do conteúdo
   const extractTags = (content: string): string[] => {
     if (!content) return [];
-    
+
     return content.split(" ")
       .filter(word => word.startsWith("#"))
       .map(tag => tag.substring(1));
@@ -74,7 +73,6 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
     
     return "?";
   };
-
   return (
     <div className="p-4 space-y-4">
       <Card
@@ -85,7 +83,7 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
           <div className="flex items-start justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">
+                <span>
                   {getAuthorInitial()}
                 </span>
               </div>
@@ -95,7 +93,7 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
                 </h3>
                 <p className="text-sm text-gray-500">
                   {feedback.isAnonymous ? "Anônimo" : feedback.authorId} •{" "}
-                  {formatDate(feedback.createdAt || new Date().toString())}
+                  {formatDate(feedback.createdAt?.toString() || new Date().toString())}
                 </p>
               </div>
             </div>
