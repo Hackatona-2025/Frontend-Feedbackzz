@@ -1,29 +1,33 @@
-import { Button } from "./ui/button";
+import { useEffect, useState } from "react";
 
-interface TabSelectorProps {
-  activeTab: string;
-  onChange: (tabIndex: number) => void;
-}
 
-export default function TabSelector({ activeTab, onChange }: TabSelectorProps) {
-  const tabs = ["Feed", "Feedbacks", "Reações", "Relatórios"];
+export default function TabSelector() {
+  const [activeTab, setActiveTab] = useState<number>();
+  const [tabs, setTabs] = useState<string[]>();
+
+  const onHandleGroupClick = () => {
+    //implementar chamada para trocar aba
+  }
+
+  const getAllGroups = async () => {
+    //implementar chamada de buscar groups
+    const data = ["data"]; //passar final da resposta
+    setTabs(data);
+  }
+
+  useEffect(() => {
+    getAllGroups();
+  }, []);
 
   return (
     <div className="bg-white border-b border-gray-50 px-4 py-2 mt-4">
-        <div className="flex gap-2 overflow-x-auto">
-          <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full font-medium whitespace-nowrap">
-            Feed
+      <div className="flex gap-2 overflow-x-auto">
+        {tabs?.map((tab: string, index: number) => (
+          <button key={index} onClick={() => { setActiveTab(index); onHandleGroupClick(); }} className={`${activeTab === index ? "bg-gradient-to-r from-blue-500 to-purple-600" : "bg-gray-50"} text-gray-800 px-6 py-2 rounded-full font-medium hover:bg-gray-200 whitespace-nowrap hover:scale-105`}>
+            {tab}
           </button>
-          <button className="bg-gray-100 text-gray-600 px-6 py-2 rounded-full font-medium whitespace-nowrap hover:bg-gray-200 transition-colors">
-            Feedbacks
-          </button>
-          <button className="bg-gray-100 text-gray-600 px-6 py-2 rounded-full font-medium whitespace-nowrap hover:bg-gray-200 transition-colors">
-            Reações
-          </button>
-          <button className="bg-gray-100 text-gray-600 px-6 py-2 rounded-full font-medium whitespace-nowrap hover:bg-gray-200 transition-colors">
-            Relatórios
-          </button>
-        </div>
+        ))}
       </div>
+    </div>
   );
 }
