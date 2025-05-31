@@ -51,7 +51,7 @@ export default function AddFeedbackDialog({ open, onOpenChange }: AddFeedbackDia
               value={newFeedback.title}
               onChange={(e) => setNewFeedback({ ...newFeedback, title: e.target.value })}
               placeholder="Digite o título do feedback"
-              className="mt-1 text-sm sm:text-base"
+              className="mt-1 text-sm sm:text-base shadow-lg"
             />
           </div>
           <div>
@@ -63,7 +63,7 @@ export default function AddFeedbackDialog({ open, onOpenChange }: AddFeedbackDia
               value={newFeedback.content}
               onChange={(e) => setNewFeedback({ ...newFeedback, content: e.target.value })}
               placeholder="Digite seu feedback. Use @ para mencionar pessoas e # para hashtags"
-              className="min-h-[120px] sm:min-h-[150px] mt-1 text-sm sm:text-base"
+              className="min-h-[120px] sm:min-h-[150px] mt-1 text-sm sm:text-base shadow-lg"
             />
           </div>
           <div className="flex items-center space-x-2">
@@ -76,7 +76,7 @@ export default function AddFeedbackDialog({ open, onOpenChange }: AddFeedbackDia
               Postar anonimamente
             </Label>
           </div>
-          <Button onClick={handleCreateFeedback} className="w-full text-sm sm:text-base">
+          <Button onClick={handleCreateFeedback} className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-sm sm:text-base">
             Publicar Feedback
           </Button>
         </div>
