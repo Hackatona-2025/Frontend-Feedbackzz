@@ -19,14 +19,12 @@ export default function Layout() {
   };
 
   return (
-    <>
-      <div className="w-max-screen overflow-x-hidden min-h-screen h-full bg-gray-50 text-white relative">
-        <Header />
-        <main className="w-full">
-          <Outlet />
-        </main>
-      </div>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-1 w-full bg-gray-50 text-gray-900">
+        <Outlet />
+      </main>
       <BottomNav onSelect={handleNavigation} />
-    </>
+    </div>
   );
 }
