@@ -14,7 +14,6 @@ import { Button } from "./ui/button";
 interface AddFeedbackDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  // Se quiser lidar com envio externo, adicione um onSubmit aqui
 }
 
 type NewFeedback = {
@@ -32,9 +31,6 @@ export default function AddFeedbackDialog({ open, onOpenChange }: AddFeedbackDia
 
   // Exemplo de handle de publicação (você pode integrar API, etc.)
   function handleCreateFeedback() {
-    // Aqui vai o envio para o backend, validação etc.
-    // Exemplo: console.log(newFeedback);
-    // Limpa e fecha o dialog
     setNewFeedback({ title: "", content: "", isAnonymous: false });
     onOpenChange(false);
   }

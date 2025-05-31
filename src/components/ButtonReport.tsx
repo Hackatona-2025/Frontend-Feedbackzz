@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Flag } from "lucide-react" // Certifique-se que lucide-react está instalado
+import { Flag } from "lucide-react"
 
 export function ButtonReport() {
   const [clicked, onClick] = useState(false);
