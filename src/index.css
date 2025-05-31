@@ -64,14 +64,10 @@ a:hover {
 
 body {
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-/* Estilos específicos para telas de login/registro */
-.w-screen.h-screen.flex.items-center.justify-center {
   display: flex;
   place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
 h1 {

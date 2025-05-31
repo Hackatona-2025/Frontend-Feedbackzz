@@ -1,17 +1,21 @@
-import { api } from './api';
+import api from './api';
 
-export interface CreateFeedbackDto {
+export interface Feedback {
+  id: string;
   content: string;
   file?: string;
+  createdAt: string;
+  reportCount: number;
   authorId: string;
   groupId?: string;
   isAnonymous: boolean;
 }
 
-export interface Feedback extends CreateFeedbackDto {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
+export interface CreateFeedbackData {
+  content: string;
+  file?: string;
+  groupId?: string;
+  isAnonymous?: boolean;
 }
 
 export interface Reaction {
@@ -22,45 +26,35 @@ export interface Reaction {
   createdAt: string;
 }
 
-export const feedbackService = {
-  async createFeedback(feedback: CreateFeedbackDto) {
-    const response = await api.post<{ data: Feedback }>('/feedbacks', feedback);
-    return response.data?.data;
+const feedbackService = {
+  async getFeedbacks(groupId?: string): Promise<Feedback[]> {
+    const url = groupId ? `/feedbacks?groupId=${groupId}` : '/feedbacks';
+    const { data } = await api.get<Feedback[]>(url);
+    return data;
   },
 
-  async getFeedbackById(id: string) {
-    const response = await api.get<{ data: Feedback }>(`/feedbacks/${id}`);
-    return response.data?.data;
+  async getFeedbackById(id: string): Promise<Feedback> {
+    const { data } = await api.get<Feedback>(`/feedbacks/${id}`);
+    return data;
   },
 
-  async getAllFeedbacks() {
-    const response = await api.post<{ data: Feedback[] }>('/feedbacks/all');
-    console.log('Feedbacks response:', response.data); // Debug log
-    return response.data?.data || [];
+  async createFeedback(data: CreateFeedbackData): Promise<Feedback> {
+    const { data: responseData } = await api.post<Feedback>('/feedbacks', data);
+    return responseData;
   },
 
-  async updateFeedback(feedback: Feedback) {
-    const response = await api.patch<{ data: Feedback }>('/feedbacks', feedback);
-    return response.data?.data;
+  async updateFeedback(id: string, data: Partial<CreateFeedbackData>): Promise<Feedback> {
+    const { data: responseData } = await api.patch<Feedback>(`/feedbacks/${id}`, data);
+    return responseData;
   },
 
-  async deleteFeedback(id: string) {
+  async deleteFeedback(id: string): Promise<void> {
     await api.delete(`/feedbacks/${id}`);
   },
 
-  async getFeedbacksByGroupId(groupId: string) {
-    const response = await api.get<{ data: Feedback[] }>(`/feedbacks/group/${groupId}`);
-    return response.data?.data || [];
-  },
-
-  async getFeedbacksByAuthorId(authorId: string) {
-    const response = await api.get<{ data: Feedback[] }>(`/feedbacks/author/${authorId}`);
-    return response.data?.data || [];
-  },
-
-  async addReaction(feedbackId: string, type: Reaction['type']): Promise<Reaction | undefined> {
-    const response = await api.post<{ data: Reaction }>(`/feedbacks/${feedbackId}/reactions`, { type });
-    return response.data?.data;
+  async addReaction(feedbackId: string, type: Reaction['type']): Promise<Reaction> {
+    const { data } = await api.post<Reaction>(`/feedbacks/${feedbackId}/reactions`, { type });
+    return data;
   },
 
   async removeReaction(feedbackId: string, reactionId: number): Promise<void> {
