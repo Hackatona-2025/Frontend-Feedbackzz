@@ -1,11 +1,11 @@
 import { Card, CardContent } from "./ui/card";
-import { MessageCircle, ThumbsUp, Zap, Lightbulb, Smile } from "lucide-react";
+import { TriangleAlert, MessageCircle, ThumbsUp, Zap, Lightbulb, Smile } from "lucide-react";
 import { ReactionButton } from "./ReactionButton";
 import { useState } from "react";
 
 interface FeedbackCardProps {
   feedback: Feedback;
-   onReactionClick: (feedbackId: string, reactionIndex: number) => void;
+  onReactionClick: (feedbackId: string, reactionIndex: number) => void;
 }
 interface Feedback {
   id: string;
@@ -19,7 +19,10 @@ interface Feedback {
   createdAt: string;
 }
 
-export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCardProps) {
+export default function FeedbackCard({
+  feedback,
+  onReactionClick,
+}: FeedbackCardProps) {
   const [selectedReaction, setSelectedReaction] = useState<string>();
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("pt-BR", {
@@ -51,6 +54,10 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
     });
   };
 
+  const handleComplaint = () => {
+    // Handle complaint logic here, e.g., open a modal or redirect to a complaint page
+  }
+
   return (
     <div className="p-4 space-y-4">
       <Card
@@ -58,8 +65,8 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
         className="hover:shadow-lg transition-shadow duration-200"
       >
         <CardContent className="p-6">
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center gap-3">
+          <div className="flex items-start justify-center mb-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-sm">
                   {feedback.isAnonymous
@@ -68,7 +75,7 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
                 </span>
               </div>
               <div>
-                <h3 className="font-bold text-lg text-gray-900">
+                <h3 className="font-bold text-md sm:text-lg text-gray-900">
                   {feedback.title}
                 </h3>
                 <p className="text-sm text-gray-500">
@@ -77,8 +84,8 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
                 </p>
               </div>
             </div>
-            <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <MessageCircle className="h-5 w-5 text-gray-600" />
+            <button onClick={handleComplaint} className="p-2 bg-transparent border-1 border-red-300 hover:bg-gray-100 rounded-lg transition-colors">
+              <TriangleAlert className="h-5 w-5 text-red-600" />
             </button>
           </div>
 
