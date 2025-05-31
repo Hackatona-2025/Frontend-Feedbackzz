@@ -1,9 +1,11 @@
 import { Card, CardContent } from "./ui/card";
 import { MessageCircle, ThumbsUp, Zap, Lightbulb, Smile } from "lucide-react";
 import { ReactionButton } from "./ReactionButton";
+import { useState } from "react";
 
 interface FeedbackCardProps {
   feedback: Feedback;
+   onReactionClick: (feedbackId: string, reactionIndex: number) => void;
 }
 interface Feedback {
   id: string;
@@ -17,7 +19,8 @@ interface Feedback {
   createdAt: string;
 }
 
-export default function FeedbackCard({ feedback }: FeedbackCardProps) {
+export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCardProps) {
+  const [selectedReaction, setSelectedReaction] = useState<string>();
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("pt-BR", {
       day: "2-digit",
@@ -60,7 +63,7 @@ export default function FeedbackCard({ feedback }: FeedbackCardProps) {
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-sm">
                   {feedback.isAnonymous
-                    ? "A"
+                    ? "..."
                     : feedback.author.charAt(0).toUpperCase()}
                 </span>
               </div>
@@ -99,32 +102,32 @@ export default function FeedbackCard({ feedback }: FeedbackCardProps) {
               icon={<ThumbsUp className="h-4 w-4" />}
               count={feedback.reactions[0]}
               color="bg-blue-100 text-blue-600"
-              onClick={() => feedback.onReaction(feedback.id, 0)}
+              onClick={() => {onReactionClick(feedback.id, 0); setSelectedReaction(ThumbsUp)}}
             />
             <ReactionButton
               icon={<Zap className="h-4 w-4" />}
               count={feedback.reactions[1]}
               color="bg-yellow-100 text-yellow-600"
-              onClick={() => feedback.onReaction(feedback.id, 1)}
+              onClick={() => onReactionClick(feedback.id, 1)}
             />
             <ReactionButton
               icon={<Lightbulb className="h-4 w-4" />}
               count={feedback.reactions[2]}
               color="bg-green-100 text-green-600"
-              onClick={() => feedback.onReaction(feedback.id, 2)}
+              onClick={() => onReactionClick(feedback.id, 2)}
             />
             <ReactionButton
               icon={<Smile className="h-4 w-4" />}
               count={feedback.reactions[3]}
               color="bg-orange-100 text-orange-600"
-              onClick={() => feedback.onReaction(feedback.id, 3)}
+              onClick={() => onReactionClick(feedback.id, 3)}
             />
             {feedback.reactions[4] > 0 && (
               <ReactionButton
                 icon={<MessageCircle className="h-4 w-4" />}
                 count={feedback.reactions[4]}
                 color="bg-purple-100 text-purple-600"
-                onClick={() => feedback.onReaction(feedback.id, 4)}
+                onClick={() => onReactionClick(feedback.id, 4)}
               />
             )}
           </div>
