@@ -1,11 +1,11 @@
 import { Card, CardContent } from "./ui/card";
-import { MessageCircle, ThumbsUp, Zap, Lightbulb, Smile } from "lucide-react";
+import { TriangleAlert, MessageCircle, ThumbsUp, Zap, Lightbulb, Smile } from "lucide-react";
 import { ReactionButton } from "./ReactionButton";
 import { useState } from "react";
 
 interface FeedbackCardProps {
   feedback: Feedback;
-   onReactionClick: (feedbackId: string, reactionIndex: number) => void;
+  onReactionClick: (feedbackId: string, reactionIndex: number) => void;
 }
 interface Feedback {
   id: string;
@@ -19,7 +19,10 @@ interface Feedback {
   createdAt: string;
 }
 
-export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCardProps) {
+export default function FeedbackCard({
+  feedback,
+  onReactionClick,
+}: FeedbackCardProps) {
   const [selectedReaction, setSelectedReaction] = useState<string>();
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("pt-BR", {
@@ -51,6 +54,10 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
     });
   };
 
+  const handleComplaint = () => {
+    // Handle complaint logic here, e.g., open a modal or redirect to a complaint page
+  }
+
   return (
     <div className="p-4 space-y-4">
       <Card
@@ -77,8 +84,8 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
                 </p>
               </div>
             </div>
-            <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <MessageCircle className="h-5 w-5 text-gray-600" />
+            <button onClick={handleComplaint} className="p-2 bg-transparent border-1 border-red-300 hover:bg-gray-100 rounded-lg transition-colors">
+              <TriangleAlert className="h-5 w-5 text-red-600" />
             </button>
           </div>
 
@@ -102,7 +109,9 @@ export default function FeedbackCard({ feedback, onReactionClick }: FeedbackCard
               icon={<ThumbsUp className="h-4 w-4" />}
               count={feedback.reactions[0]}
               color="bg-blue-100 text-blue-600"
-              onClick={() => {onReactionClick(feedback.id, 0); setSelectedReaction(ThumbsUp)}}
+              onClick={() => {
+                onReactionClick(feedback.id, 0);
+              }}
             />
             <ReactionButton
               icon={<Zap className="h-4 w-4" />}

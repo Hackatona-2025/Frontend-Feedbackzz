@@ -11,7 +11,7 @@ export default function TabSelector() {
 
   const getAllGroups = async () => {
     //implementar chamada de buscar groups
-    const data = ["data"]; //passar final da resposta
+    const data = ["data", "aaa", "bbb", "Ccc", "ddd", "eee"]; //passar final da resposta
     setTabs(data);
   }
 
@@ -21,7 +21,7 @@ export default function TabSelector() {
 
   return (
     <div className="bg-white border-b border-gray-50 px-4 py-2 mt-4">
-      <div className="flex gap-2 overflow-x-auto">
+      <div className="flex gap-2 overflow-y-hidden overflow-x-auto">
         {tabs?.map((tab: string, index: number) => (
           <button key={index} onClick={() => { setActiveTab(index); onHandleGroupClick(); }} className={`${activeTab === index ? "bg-gradient-to-r from-blue-500 to-purple-600" : "bg-gray-50"} text-gray-800 px-6 py-2 rounded-full font-medium hover:bg-gray-200 whitespace-nowrap hover:scale-105`}>
             {tab}
