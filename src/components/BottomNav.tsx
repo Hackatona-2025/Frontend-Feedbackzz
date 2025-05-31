@@ -42,7 +42,7 @@ export default function BottomNav({ onSelect }: BottomNavProps) {
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 right-0 bg-[#1e293b] text-white flex justify-around py-2 border-t border-[#2d3a4f] z-50">
+      <nav className="fixed bottom-0 left-0 right-0 bg-gradient-to-br from-slate-800 to-slate-700 text-white flex justify-around py-2 border-t border-[#2d3a4f] z-50">
         {tabs.map((tab, i) => (
           <div
             key={i}
