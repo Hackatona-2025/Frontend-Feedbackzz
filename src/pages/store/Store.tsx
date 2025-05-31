@@ -25,7 +25,7 @@ const products = [
     name: "Aulas de Graça na Alura",
     description: "Mais de 1000 cursos gratuitos e interativos na Alura",
     category: "Education",
-    price: 300,
+    price: 30000,
     icon: <Gift className="w-8 h-8 text-pink-400" />,
   },
   

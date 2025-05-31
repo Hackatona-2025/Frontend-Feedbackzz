@@ -17,8 +17,8 @@ export default function Profile() {
                 <AvatarFallback className="text-lg sm:text-xl">U</AvatarFallback>
               </Avatar>
               <div className="text-center sm:text-left w-full">
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold">User Name</h2>
-                <p className="text-sm sm:text-base text-muted-foreground">user@email.com</p>
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold">Bernardo Kirsch</h2>
+                <p className="text-sm sm:text-base text-muted-foreground">bekirsch123@gmail.com</p>
               </div>
             </div>
           </CardContent>
