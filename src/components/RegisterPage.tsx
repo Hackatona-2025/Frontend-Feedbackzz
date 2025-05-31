@@ -1,18 +1,35 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { RegisterForm } from "@/components/RegisterForm";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Sparkles } from "lucide-react";
+import authService from "@/services/authService";
 
 export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   async function handleRegister(name: string, email: string, password: string) {
     setLoading(true);
-    await new Promise(r => setTimeout(r, 1200));
-    toast.success("Cadastro realizado com sucesso!");
-    setLoading(false);
+    try {
+      await authService.register({
+        name,
+        email,
+        password,
+        // Como groupId é obrigatório no backend, usar um valor padrão temporário
+        // Em uma implementação real, o usuário deveria escolher um grupo ou ter um atribuído
+        groupId: "default"
+      });
+      toast.success("Cadastro realizado com sucesso!");
+      navigate("/feed");
+    } catch (error: unknown) {
+      const errorMessage = 
+        error instanceof Error ? error.message : "Erro ao cadastrar usuário";
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (

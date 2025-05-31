@@ -1,20 +1,9 @@
-import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { LoginForm } from "@/components/LoginForm";
 import { Link } from "react-router-dom";
-import { toast } from "sonner";
 import { Sparkles } from "lucide-react";
 
 export default function LoginPage() {
-  const [loading, setLoading] = useState(false);
-
-  async function handleLogin(email: string, password: string) {
-    setLoading(true);
-    await new Promise(r => setTimeout(r, 1200));
-    toast.success("Login realizado (mock)!");
-    setLoading(false);
-  }
-
   return (
     <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-blue-900">
       <Card className="w-full max-w-sm p-0 border-none rounded-3xl shadow-xl bg-white/5 backdrop-blur-md transition hover:shadow-2xl hover:-translate-y-1 duration-300">
@@ -30,7 +19,7 @@ export default function LoginPage() {
             <Sparkles className="h-4 w-4 text-violet-300 animate-pulse" />
             Bem-vindo! Faça login para continuar.
           </span>
-          <LoginForm onLogin={handleLogin} loading={loading} />
+          <LoginForm />
           <div className="w-full flex items-center my-6">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-violet-400 to-transparent opacity-40" />
           </div>
