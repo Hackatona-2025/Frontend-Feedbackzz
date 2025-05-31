@@ -6,6 +6,7 @@ import Profile from '../pages/Profile';
 import GroupManagement from '../pages/admin/GroupManagement';
 import PointsManagement from '../pages/admin/PointsManagement';
 import GroupDetails from '../pages/GroupDetails';
+import Store from '@/pages/store/Store';
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: '/admin/points',
         element: <PointsManagement />,
+      },
+      {
+        path: '/store/',
+        element: <Store />,
       },
     ],
   },

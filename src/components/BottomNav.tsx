@@ -12,6 +12,8 @@ export default function BottomNav({ onSelect }: BottomNavProps) {
     { label: 'Feed', icon: '📝', path: '/' },
     { label: 'AI', icon: '🤖', path: '/ai-analysis' },
     { label: 'Profile', icon: '👤', path: '/profile' },
+    { label: 'Store', icon: '🛒', path: '/store' },
+    { label: 'Admin', icon: '🔧', path: '/admin/groups' }
   ];
 
   const handleClick = (tab: typeof tabs[0]) => {
