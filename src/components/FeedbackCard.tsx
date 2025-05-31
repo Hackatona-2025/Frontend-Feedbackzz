@@ -1,81 +1,135 @@
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { ButtonReport } from './ButtonReport';
+import { Card, CardContent } from "./ui/card";
+import { MessageCircle, ThumbsUp, Zap, Lightbulb, Smile } from "lucide-react";
+import { ReactionButton } from "./ReactionButton";
 
 interface FeedbackCardProps {
-  feedback: {
-    id: string;
-    title: string;
-    content: string;
-    author: string;
-    isAnonymous: boolean;
-    mentions: string[];
-    hashtags: string[];
-    reactions: number[];
-    createdAt: string;
-  };
-  onReaction: (feedbackId: string, reactionIndex: number) => void;
+  feedback: Feedback;
+}
+interface Feedback {
+  id: string;
+  title: string;
+  content: string;
+  author: string;
+  isAnonymous: boolean;
+  mentions: string[];
+  hashtags: string[];
+  reactions: number[];
+  createdAt: string;
 }
 
-export default function FeedbackCard({ feedback, onReaction }: FeedbackCardProps) {
+export default function FeedbackCard({ feedback }: FeedbackCardProps) {
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return new Date(dateString).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
   const renderMentions = (content: string) => {
-    return content.split(' ').map((word, index) => {
-      if (word.startsWith('@')) {
+    return content.split(" ").map((word, index) => {
+      if (word.startsWith("@")) {
         return (
           <span key={index} className="text-violet-400">
-            {word}{' '}
+            {word}{" "}
           </span>
         );
       }
-      if (word.startsWith('#')) {
+      if (word.startsWith("#")) {
         return (
           <span key={index} className="text-blue-400">
-            {word}{' '}
+            {word}{" "}
           </span>
         );
       }
-      return word + ' ';
+      return word + " ";
     });
   };
 
   return (
-    <Card className="bg-[#334155] text-white">
-      <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
-        <div className="space-y-1">
-          <CardTitle className="text-lg font-bold">{feedback.title}</CardTitle>
-          <div className="text-sm text-gray-400">
-            {feedback.isAnonymous ? 'Anonymous' : feedback.author} • {formatDate(feedback.createdAt)}
-          </div>
-        </div>
-        <div className="flex items-center">
-        <ButtonReport>
-        </ButtonReport>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <p className="text-sm mb-4">{renderMentions(feedback.content)}</p>
-        <div className="flex justify-around">
-          {['👍', '⚡', '💡', '😐', '👎'].map((emoji, index) => (
-            <button
-              key={index}
-              onClick={() => onReaction(feedback.id, index)}
-              className="flex items-center space-x-1 text-sm hover:text-violet-400 transition-colors"
-            >
-              <span>{emoji}</span>
-              <span>{feedback.reactions[index]}</span>
+    <div className="p-4 space-y-4">
+      <Card
+        key={feedback.id}
+        className="hover:shadow-lg transition-shadow duration-200"
+      >
+        <CardContent className="p-6">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm">
+                  {feedback.isAnonymous
+                    ? "A"
+                    : feedback.author.charAt(0).toUpperCase()}
+                </span>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg text-gray-900">
+                  {feedback.title}
+                </h3>
+                <p className="text-sm text-gray-500">
+                  {feedback.isAnonymous ? "Anônimo" : feedback.author} •{" "}
+                  {formatDate(feedback.createdAt)}
+                </p>
+              </div>
+            </div>
+            <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+              <MessageCircle className="h-5 w-5 text-gray-600" />
             </button>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+          </div>
+
+          <p className="text-gray-700 mb-4">
+            {renderMentions(feedback.content)}
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            {feedback.hashtags?.map((tag: string) => (
+              <span
+                key={tag}
+                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs px-3 py-1 rounded-full"
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <ReactionButton
+              icon={<ThumbsUp className="h-4 w-4" />}
+              count={feedback.reactions[0]}
+              color="bg-blue-100 text-blue-600"
+              onClick={() => feedback.onReaction(feedback.id, 0)}
+            />
+            <ReactionButton
+              icon={<Zap className="h-4 w-4" />}
+              count={feedback.reactions[1]}
+              color="bg-yellow-100 text-yellow-600"
+              onClick={() => feedback.onReaction(feedback.id, 1)}
+            />
+            <ReactionButton
+              icon={<Lightbulb className="h-4 w-4" />}
+              count={feedback.reactions[2]}
+              color="bg-green-100 text-green-600"
+              onClick={() => feedback.onReaction(feedback.id, 2)}
+            />
+            <ReactionButton
+              icon={<Smile className="h-4 w-4" />}
+              count={feedback.reactions[3]}
+              color="bg-orange-100 text-orange-600"
+              onClick={() => feedback.onReaction(feedback.id, 3)}
+            />
+            {feedback.reactions[4] > 0 && (
+              <ReactionButton
+                icon={<MessageCircle className="h-4 w-4" />}
+                count={feedback.reactions[4]}
+                color="bg-purple-100 text-purple-600"
+                onClick={() => feedback.onReaction(feedback.id, 4)}
+              />
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

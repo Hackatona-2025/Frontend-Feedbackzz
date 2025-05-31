@@ -26,7 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <span className="text-secondary-foreground bg-gray-100 text-xs px-2 py-1 rounded mt-1 inline-block">{product.category}</span>
       </div>
       <div className="flex flex-col gap-2 sm:flex-row items-center justify-center ml-4">
-        <span className="flex items-center justify-center text-yellow-400 font-bold text-lg mb-2 gap-1">
+        <span className="flex items-center justify-center text-yellow-400 font-bold text-lg gap-1">
           <DisplayCoins coins={product.price} />
         </span>
         <Button className="active:scale-95 transition bg-gradient-to-br from-blue-500 to-purple-600">Comprar</Button>

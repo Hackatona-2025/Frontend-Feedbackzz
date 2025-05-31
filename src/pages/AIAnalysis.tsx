@@ -45,8 +45,8 @@ export default function AIAnalysis() {
   })
 
   return (
-    <div className="w-screen h-full flex justify-center items-center space-y-4 sm:space-y-6 p-4 sm:p-6">
-      <Card>
+    <div className="w-screen h-fit flex justify-center items-center space-y-4 sm:space-y-6 p-4 sm:p-6">
+      <Card className="w-full sm:w-100 pb-50">
         <CardHeader className="p-4 sm:p-6">
           <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
             <Bot className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -57,7 +57,7 @@ export default function AIAnalysis() {
           </CardDescription>
         </CardHeader>
         <CardContent className="p-4 sm:p-6">
-          <div className="space-y-4 sm:space-y-6">
+          <div className="w-full space-y-4 sm:space-y-6">
             <div>
               <div className="flex items-center justify-between mb-2">
                 <h3 className="font-semibold text-sm sm:text-base">Pontuação Geral</h3>

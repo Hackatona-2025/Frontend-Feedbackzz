@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Switch } from "@/components/ui/switch"
 import FeedbackCard from "@/components/FeedbackCard"
+import TabSelector from "@/components/TabSelector"
 
 interface Feedback {
   id: string
@@ -97,6 +98,7 @@ export default function Feed() {
 
   return (
     <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
+      <TabSelector activeTab="" />
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
         {feedbacks.map((feedback) => (
           <FeedbackCard key={feedback.id} feedback={feedback} onReaction={handleReaction} />
