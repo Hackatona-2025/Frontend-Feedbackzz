@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
-import { LoginForm } from "@/components/LoginForm";
+import { RegisterForm } from "@/components/RegisterForm";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { Sparkles } from "lucide-react";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin(email: string, password: string) {
+  async function handleRegister(name: string, email: string, password: string) {
     setLoading(true);
     await new Promise(r => setTimeout(r, 1200));
-    toast.success("Login realizado (mock)!");
+    toast.success("Cadastro realizado com sucesso!");
     setLoading(false);
   }
 
@@ -28,16 +28,16 @@ export default function LoginPage() {
           </h1>
           <span className="flex items-center gap-2 mb-7 text-sm text-violet-100 font-medium">
             <Sparkles className="h-4 w-4 text-violet-300 animate-pulse" />
-            Bem-vindo! Faça login para continuar.
+            Crie sua conta para acessar a plataforma.
           </span>
-          <LoginForm onLogin={handleLogin} loading={loading} />
+          <RegisterForm onRegister={handleRegister} loading={loading} />
           <div className="w-full flex items-center my-6">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-violet-400 to-transparent opacity-40" />
           </div>
           <span className="mt-0 text-sm text-gray-300 text-center">
-            Não tem uma conta?{" "}
-            <Link to="/register" className="text-violet-400 hover:text-pink-300 font-semibold hover:underline transition">
-              Registre-se
+            Já tem uma conta?{" "}
+            <Link to="/login" className="text-violet-400 hover:text-pink-300 font-semibold hover:underline transition">
+              Entrar
             </Link>
           </span>
         </div>

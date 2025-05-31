@@ -3,26 +3,41 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
-interface LoginFormProps {
-  onLogin: (email: string, password: string) => Promise<void>;
+interface RegisterFormProps {
+  onRegister: (name: string, email: string, password: string) => Promise<void>;
   loading?: boolean;
 }
 
-export function LoginForm({ onLogin, loading }: LoginFormProps) {
+export function RegisterForm({ onRegister, loading }: RegisterFormProps) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) {
+    if (!name || !email || !password) {
       toast.error("Preencha todos os campos");
       return;
     }
-    await onLogin(email, password);
+    await onRegister(name, email, password);
   };
 
   return (
     <form className="space-y-6 w-full" onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="name" className="block text-sm font-semibold mb-1 text-white">
+          Nome
+        </label>
+        <Input
+          id="name"
+          type="text"
+          className="bg-slate-700 border border-slate-600 text-white placeholder-gray-400 focus:ring-violet-400 focus:border-violet-400"
+          placeholder="Seu nome"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          autoComplete="name"
+        />
+      </div>
       <div>
         <label htmlFor="email" className="block text-sm font-semibold mb-1 text-white">
           Email
@@ -48,7 +63,7 @@ export function LoginForm({ onLogin, loading }: LoginFormProps) {
           placeholder="••••••••"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          autoComplete="current-password"
+          autoComplete="new-password"
         />
       </div>
       <Button
@@ -56,7 +71,7 @@ export function LoginForm({ onLogin, loading }: LoginFormProps) {
         type="submit"
         disabled={loading}
       >
-        {loading ? "Entrando..." : "Entrar"}
+        {loading ? "Registrando..." : "Registrar"}
       </Button>
     </form>
   );

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ConfirmDialog } from "@/components/ConfirmDialog"; // ajuste o caminho conforme o seu projeto
+import { ConfirmDialog } from "@/components/ConfirmDialog";
 import { DisplayCoins } from "./DisplayCoins";
 
 interface Product {
@@ -27,7 +27,6 @@ export default function ProductCard({ product }: ProductCardProps) {
   const handleConfirm = () => {
     setShowConfirm(false);
     toast.success(`Você comprou: ${product.name} por ${product.price} moedas!`);
-    // Aqui pode ir a lógica real de compra, ex: requisição à API
   };
 
   const handleCancel = () => {

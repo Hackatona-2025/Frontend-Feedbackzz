@@ -8,11 +8,16 @@ import PointsManagement from '../pages/admin/PointsManagement';
 import GroupDetails from '../pages/GroupDetails';
 import Store from '../pages/store/Store';
 import LoginPage from '../components/LoginPage';
+import RegisterPage from '@/components/RegisterPage';
 
 export const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/register', 
+    element: <RegisterPage />,
   },
   {
     path: '/',
