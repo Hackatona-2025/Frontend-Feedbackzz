@@ -1,3 +1,7 @@
+import { Gift } from "lucide-react";
+import { DisplayCoins } from "./DisplayCoins";
+
+
 interface Product {
   icon: React.ReactNode;
   name: string;
@@ -22,7 +26,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         <span className="bg-[#222347] text-blue-400 text-xs px-2 py-1 rounded mt-1 inline-block">{product.category}</span>
       </div>
       <div className="flex flex-col items-end ml-4">
-        <span className="text-yellow-400 font-bold text-lg mb-2">🪙 {product.price}</span>
+        <span className="flex items-center text-yellow-400 font-bold text-lg mb-2 gap-1">
+          <DisplayCoins coins={product.price} />
+        </span>
         <button className="bg-[#384362] text-white px-5 py-2 rounded-lg font-bold active:scale-95 transition">Comprar</button>
       </div>
     </div>

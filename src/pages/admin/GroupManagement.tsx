@@ -4,7 +4,7 @@ import { GroupCards, type Group } from "@/components/GroupCards";
 const sampleGroups: Group[] = [
   {
     id: "1",
-    name: "Product Development Team",
+    name: "Product Team",
     membersCount: 12,
     description: "Team focused on product development and innovation",
     createdAt: "2024-01-15",
