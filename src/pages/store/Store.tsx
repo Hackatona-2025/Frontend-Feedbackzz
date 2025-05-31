@@ -1,34 +1,50 @@
-
 // src/pages/store/Store.tsx
 import ProductCard from "../../components/ProductCard";
-import { Gift } from "lucide-react";
 
 const products = [
   {
     id: 1,
-    name: "Mochila da HPE",
-    description: "Uma mochila exclusiva da HPE - para você levar seus itens",
-    category: "Badges",
-    price: 20000,
-    icon: <Gift className="w-8 h-8 text-yellow-400" />,
+    name: "Apple Vision Pro",
+    description:
+      "O futuro da computação espacial com realidade aumentada imersiva.",
+    category: "Tecnologia",
+    price: 200000,
+    imageUrl: "/images/applevision.png", // Substitua pelo URL real da imagem
   },
   {
     id: 2,
-    name: "PowerBank",
-    description: "Um powerbank, para você nunca ficar sem bateria",
-    category: "Tecnology",
-    price: 3000,
-    icon: <Gift className="w-8 h-8 text-pink-400" />,
+    name: "MacBook Pro M3 Max",
+    description: "Desempenho extremo para tarefas profissionais e criativas.",
+    category: "Computador",
+    price: 180000,
+    imageUrl: "/images/macbook.png",
   },
   {
     id: 3,
-    name: "Aulas de Graça na Alura",
-    description: "Mais de 1000 cursos gratuitos e interativos na Alura",
-    category: "Education",
-    price: 30000,
-    icon: <Gift className="w-8 h-8 text-pink-400" />,
+    name: "PlayStation 5 Edição Digital",
+    description:
+      "A nova geração de consoles com SSD ultrarrápido e gráficos incríveis.",
+    category: "Games",
+    price: 40000,
+    imageUrl: "/images/play5.png",
   },
-  
+  {
+    id: 4,
+    name: "Curso Vitalício da Alura",
+    description:
+      "Acesso vitalício a toda a plataforma Alura com atualizações inclusas.",
+    category: "Educação",
+    price: 100000,
+    imageUrl: "/images/alura.png",
+  },
+  {
+    id: 5,
+    name: "Cadeira Gamer Secretlab Titan Evo",
+    description: "Ergonomia e conforto premium para longas horas de uso.",
+    category: "Setup",
+    price: 50000,
+    imageUrl: "/images/cadeiragamer.png",
+  },
 ];
 
 export default function StorePage() {
