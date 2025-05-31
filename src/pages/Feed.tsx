@@ -97,56 +97,6 @@ export default function Feed() {
 
   return (
     <div className="w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button className="w-full text-sm sm:text-base">Criar Feedback</Button>
-        </DialogTrigger>
-        <DialogContent className="w-[95vw] max-w-2xl mx-auto">
-          <DialogHeader>
-            <DialogTitle className="text-lg sm:text-xl">Criar Novo Feedback</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4 max-h-[70vh] overflow-y-auto">
-            <div>
-              <Label htmlFor="title" className="text-sm sm:text-base">
-                Título
-              </Label>
-              <Input
-                id="title"
-                value={newFeedback.title}
-                onChange={(e) => setNewFeedback({ ...newFeedback, title: e.target.value })}
-                placeholder="Digite o título do feedback"
-                className="mt-1 text-sm sm:text-base"
-              />
-            </div>
-            <div>
-              <Label htmlFor="content" className="text-sm sm:text-base">
-                Conteúdo
-              </Label>
-              <Textarea
-                id="content"
-                value={newFeedback.content}
-                onChange={(e) => setNewFeedback({ ...newFeedback, content: e.target.value })}
-                placeholder="Digite seu feedback. Use @ para mencionar pessoas e # para hashtags"
-                className="min-h-[120px] sm:min-h-[150px] mt-1 text-sm sm:text-base"
-              />
-            </div>
-            <div className="flex items-center space-x-2">
-              <Switch
-                id="anonymous"
-                checked={newFeedback.isAnonymous}
-                onCheckedChange={(checked) => setNewFeedback({ ...newFeedback, isAnonymous: checked })}
-              />
-              <Label htmlFor="anonymous" className="text-sm sm:text-base">
-                Postar anonimamente
-              </Label>
-            </div>
-            <Button onClick={handleCreateFeedback} className="w-full text-sm sm:text-base">
-              Publicar Feedback
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
         {feedbacks.map((feedback) => (
           <FeedbackCard key={feedback.id} feedback={feedback} onReaction={handleReaction} />

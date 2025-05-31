@@ -1,18 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Newspaper, Brain, ShoppingCart, Settings, PlusCircle } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Label } from "@radix-ui/react-label";
-import { Input } from "./ui/input";
-import { DialogClose } from "@radix-ui/react-dialog";
-import { Button } from "./ui/button";
+import AddFeedbackDialog from "./AddFeedbackDialog"; // ajuste o caminho conforme seu projeto
 
 interface BottomNavProps {
   onSelect: (tab: string) => void;
@@ -56,34 +45,7 @@ export default function BottomNav({ onSelect }: BottomNavProps) {
           </div>
         ))}
       </nav>
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Adicionar feedback</DialogTitle>
-            <DialogDescription>
-             Adicione um feedback para um colaborador.
-            </DialogDescription>
-          </DialogHeader>
-          <form>
-            <div className="grid gap-4">
-              <div className="grid gap-3">
-                <Label htmlFor="name-1">Name</Label>
-                <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="username-1">Username</Label>
-                <Input id="username-1" name="username" defaultValue="@peduarte" />
-              </div>
-            </div>
-            <DialogFooter>
-              <DialogClose asChild>
-                <Button variant="outline" type="button">Cancelar</Button>
-              </DialogClose>
-              <Button type="submit">Adicionar</Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
+      <AddFeedbackDialog open={dialogOpen} onOpenChange={setDialogOpen} />
     </>
   );
 }
