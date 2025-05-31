@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export default function GroupManagement() {
   return (
-    <div className="space-y-4">
+    <div className="w-max space-y-4">
       <h1 className="text-2xl font-bold text-white">Group Management</h1>
       <Card>
         <CardHeader>
