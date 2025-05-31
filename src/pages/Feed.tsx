@@ -47,7 +47,7 @@ export default function Feed() {
       title: "Sobre a infra do projeto...",
       content:
         "Eu gostaria de sugerir uma melhoria no processo de integração contínua! @devops-team #improvement",
-      author: "João Silva",
+      author: "Bernardo Kirsch",
       isAnonymous: false,
       mentions: [],
       hashtags: ["teamwork", "communication"],
