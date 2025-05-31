@@ -1,29 +1,6 @@
-import Header from '../src/components/Header';
-import TabSelector from '../src/components/TabSelector';
-import FeedbackCard from '../src/components/FeedbackCard';
-import BottomNav from '../src/components/BottomNav';
-import { useState } from 'react';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes';
 
-export default function FeedbackPage() {
-  const [tab, setTab] = useState<number>(0);
-
-  return (
-    <div className="flex flex-col w-screen h-screen bg-[#0f172a] gap-3">
-      <Header />
-      <TabSelector activeTab={tab} onChange={setTab} />
-      <div className="px-4">
-        <FeedbackCard
-          title="Basic dialog title"
-          description="A dialog is a type of modal window that appears..."
-          reactions={[1, 1, 1, 1, 1]}
-        />
-        <FeedbackCard
-          title="Basic dialog title"
-          description="A dialog is a type of modal window that appears..."
-          reactions={[1, 0, 1, 1, 1]}
-        />
-      </div>
-      <BottomNav selectedTab={tab} onSelect={(label) => console.log(label)} />
-    </div>
-  );
+export default function App() {
+  return <RouterProvider router={router} />;
 }
